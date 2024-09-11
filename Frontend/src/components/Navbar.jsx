@@ -1,6 +1,22 @@
-import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function Navbar() {
+  const [sticky, setSticky] = useState(false)
+  useEffect (() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setSticky(true)
+      }
+      else {
+        setSticky(false)
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  },[])
   const navItems = (
     <>
       <li>
@@ -19,10 +35,11 @@ function Navbar() {
   );
   return (
     <>
-      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4">
-        <div className="navbar bg-base-100">
+      <div className={`max-w-screen-2xl container mx-auto md:px-20 px-4 fixed top-0 left-0 right-0 ${
+        sticky? "sticky-navbar shadow-md bg-base-000 duration-300 transition-all ease-in-out" : ""}`}>
+        <div className="navbar">
           <div className="navbar-start">
-            <div className="dropdown">
+            <div className="dropdown text-black">
               <div
                 tabIndex={0}
                 role="button"
@@ -45,25 +62,25 @@ function Navbar() {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-base-000 text-black rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
                 {navItems}
               </ul>
             </div>
-            <a className="text-2xl font-bold cursor-pointer">FabBooks</a>
+            <a className="text-2xl font-bold cursor-pointer text-black">FabBooks</a>
           </div>
-          <div className="navbar-end space-x-3">
-            <div className="navbar-center hidden lg:flex">
-              <ul className="menu menu-horizontal px-1">{navItems}</ul>
+          <div className="navbar-end space-x-3 bg-base-000">
+            <div className="navbar-center hidden lg:flex text-black">
+              <ul className="menu menu-horizontal px-1 bg-base-000 text-black">{navItems}</ul>
             </div>
             <div className="hidden md:block">
-              <label className="input input-bordered flex items-center gap-2">
-                <input type="text" className="grow" placeholder="Search" />
+              <label className="px-3 py-2 border rounded-md flex items-center gap-2">
+                <input type="text" className="grow outline-none" placeholder="Search" />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
                   fill="currentColor"
-                  className="h-4 w-4 opacity-70"
+                  className="h-4 w-4 opacity-70 text-black"
                 >
                   <path
                     fillRule="evenodd"
@@ -74,7 +91,7 @@ function Navbar() {
               </label>
             </div>
               {/* Light-Dark Mode Toggle Button */}
-              <label className="swap swap-rotate">
+              <label className="swap swap-rotate text-black">
                 {/* this hidden checkbox controls the state */}
                 <input
                   type="checkbox"
@@ -84,7 +101,7 @@ function Navbar() {
 
                 {/* sun icon */}
                 <svg
-                  className="swap-off h-8 w-8 fill-current"
+                  className="swap-off h-7 w-7 fill-current"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >
@@ -93,7 +110,7 @@ function Navbar() {
 
                 {/* moon icon */}
                 <svg
-                  className="swap-on h-8 w-8 fill-current"
+                  className="swap-on h-7 w-7 fill-current"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >
