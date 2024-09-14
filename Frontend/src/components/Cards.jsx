@@ -1,8 +1,8 @@
 function Cards({ item }) {
   return (
     <>
-      <div className="mt-4 my-3 p-3 dark:bg-slate-900 dark:text-white">
-        <div className="cursor-pointer card border-none rounded-md bg-base-100 w-92 shadow-xl dark:bg-slate-900 dark:text-white dark:border-[2px] hover:scale-105 duration-200">
+      <div className="mt-4 my-3 p-3 rounded-md dark:bg-slate-900 dark:text-white">
+        <div className="cursor-pointer card border-none bg-base-100 w-92 shadow-xl dark:bg-slate-900 dark:text-white dark:border-[2px] hover:scale-105 duration-200">
           <figure className="dark:bg-slate-900 dark:text-white">
             <img className="dark:bg-slate-900 dark:text-white" src={item.image} alt="Books" />
           </figure>
